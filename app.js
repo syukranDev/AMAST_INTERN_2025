@@ -4,12 +4,14 @@ const app = express();
 let productRouter = require('./router/productRouter.js')
 let externalDataRouter = require('./router/externalDataRouter.js')
 let userRouter = require('./router/userRouter.js')
+let fileRouter = require('./router/fileRouter.js')
 
 app.use(express.json()); // for client to send payload in JSON format
 
 app.use('/api/product', productRouter);
 app.use('/api/external_data', externalDataRouter);
 app.use('/api/user', userRouter);
+app.use('/api/file', fileRouter)
 
 
 app.get('/api/welcome_onboard/:name',(req, res) => {
