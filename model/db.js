@@ -27,6 +27,7 @@ db.sequelize = sequelize;
 // new table must declare here
 db.products = require('./products.js')(sequelize, Sequelize);
 db.webhook_3rd_party = require('./webhook_3rd_party.js')(sequelize, Sequelize);
+db.users = require('./users.js')(sequelize, Sequelize);
 
 sequelize.authenticate()
   .then(() => {

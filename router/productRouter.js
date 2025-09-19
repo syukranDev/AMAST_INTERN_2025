@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 }= require('uuid');
+const verifyToken = require('../middleware/verifyTokenMiddleware')
 
 const db = require('../model/db')
 const sq = db.sequelize
@@ -40,10 +41,16 @@ router.post('/new', async (req, res) => {
 
 // in AMAST, HTTP CODES -> we 200 (OK), 422 (client doesnt give correct info), 500 (server error)
 // api/product/details/:id
-router.get('/details/:id', async (req, res) => {
+
+router.get('/details/:id', verifyToken, async (req, res) => {
     let productId = req.params.id;
 
+    console.log('Product ID:', productId);
+    console.log(typeof productId)
+
     let data;
+
+    // console.log(req.user)
 
     try {
         // check if the product with give ID is exist in database
